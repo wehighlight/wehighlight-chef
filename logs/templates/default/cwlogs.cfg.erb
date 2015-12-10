@@ -31,3 +31,24 @@ datetime_format = [%Y-%m-%d %H:%M:%S]
 log_group_name = <%= node[:opsworks][:stack][:name].gsub(' ', '_') %>
 file = <%= node[:cwlogs][:logfile] %>
 log_stream_name = <%= node[:opsworks][:instance][:hostname] %>
+
+[Rails Production Logs]
+datetime_format = [%Y-%m-%d %H:%M:%S]
+log_group_name = rails-production
+file = /srv/www/hilitit_app/shared/log/production.log
+log_stream_name = <%= node[:opsworks][:instance][:hostname] %>
+
+[Rails Development Logs]
+file = /srv/www/hilitit_app/shared/log/development.log
+log_group_name = <%= "Development Logs".gsub(' ', '_') %>
+log_stream_name = <%= node[:opsworks][:instance][:hostname] %>
+
+[Rails Unicorn Std Error]
+file = /srv/www/hilitit_app/shared/log/unicorn.stderr.log
+log_group_name = <%= "Unicorn Std Error".gsub(' ', '_') %>
+log_stream_name = <%= node[:opsworks][:instance][:hostname] %>
+
+[Rails Unicorn Std Output]
+file = /srv/www/hilitit_app/shared/log/unicorn.stdout.log
+log_group_name = <%= "Unicorn Std Output".gsub(' ', '_') %>
+log_stream_name = <%= node[:opsworks][:instance][:hostname] %>
